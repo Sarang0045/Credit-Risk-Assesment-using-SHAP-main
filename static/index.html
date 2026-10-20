@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f5f7f4" />
+  <meta name="description" content="A clear, explainable first look at consumer loan risk." />
+  <title>Credit Ledger — Loan Risk Assessment</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css?v=2" />
+</head>
+<body>
+  <div class="ambient ambient--one" aria-hidden="true"></div>
+  <div class="ambient ambient--two" aria-hidden="true"></div>
+  <div class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="/" aria-label="Credit Ledger home">
+        <span class="brand__icon" aria-hidden="true">
+          <svg viewBox="0 0 36 36" fill="none"><path d="M18 3.5 31 10v8.4c0 7.5-5.2 12-13 14.1C10.2 30.4 5 25.9 5 18.4V10l13-6.5Z"/><path d="M12.3 18.2 16 22l7.8-8"/></svg>
+        </span>
+        <span class="brand__name">credit<span>ledger</span></span>
+      </a>
+      <div class="service-pill" id="apiStatus" role="status" aria-live="polite">
+        <span class="service-pill__dot dot" id="apiDot"></span>
+        <span id="apiStatusText">Checking service</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="intro">
+        <div class="intro__copy">
+          <p class="eyebrow"><span></span> SMARTER LENDING STARTS HERE</p>
+          <h1>A clearer view of<br /><span>credit risk.</span></h1>
+          <p class="intro__description">Explore a loan application with an instant, data-informed risk assessment. A helpful starting point for a more confident review.</p>
+        </div>
+        <div class="intro__note" aria-label="Assessment details">
+          <div class="note-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M12 3 20 6v5.5c0 4.5-3.1 7.8-8 9.5-4.9-1.7-8-5-8-9.5V6l8-3Z"/><path d="m8.5 12 2.2 2.2 4.8-5"/></svg>
+          </div>
+          <div><strong>Thoughtful by design</strong><span>Private, instant and easy to understand</span></div>
+        </div>
+      </section>
+
+      <section class="workspace" aria-label="Loan risk assessment">
+        <form class="application-card" id="riskForm">
+          <div class="card-heading">
+            <div>
+              <p class="eyebrow eyebrow--muted">NEW ASSESSMENT</p>
+              <h2>Application details</h2>
+            </div>
+            <span class="required-note"><span>*</span> Required fields</span>
+          </div>
+
+          <fieldset class="form-section">
+            <legend><span class="section-number">01</span><span>About the applicant</span></legend>
+            <div class="field-grid">
+              <div class="form-field">
+                <label for="person_age">Age</label>
+                <div class="control-wrap"><input type="number" id="person_age" name="person_age" min="18" max="100" step="1" value="30" required /><span class="control-suffix">years</span></div>
+              </div>
+              <div class="form-field">
+                <label for="person_income">Annual income</label>
+                <div class="control-wrap"><span class="control-prefix">₹</span><input type="number" id="person_income" name="person_income" min="0" step="1000" value="600000" required /></div>
+              </div>
+              <div class="form-field">
+                <label for="person_home_ownership">Home ownership</label>
+                <div class="control-wrap control-wrap--select"><select id="person_home_ownership" name="person_home_ownership" required><option value="RENT">Renting</option><option value="MORTGAGE">Mortgage</option><option value="OWN">Owns outright</option><option value="OTHER">Other</option></select><span class="select-chevron" aria-hidden="true"></span></div>
+              </div>
+              <div class="form-field">
+                <label for="person_emp_length">Employment length</label>
+                <div class="control-wrap"><input type="number" id="person_emp_length" name="person_emp_length" min="0" max="60" step="0.5" value="5" required /><span class="control-suffix">years</span></div>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-section">
+            <legend><span class="section-number">02</span><span>Loan request</span></legend>
+            <div class="field-grid">
+              <div class="form-field">
+                <label for="loan_intent">Loan purpose</label>
+                <div class="control-wrap control-wrap--select"><select id="loan_intent" name="loan_intent" required><option value="PERSONAL">Personal</option><option value="EDUCATION">Education</option><option value="MEDICAL">Medical</option><option value="VENTURE">Venture</option><option value="HOMEIMPROVEMENT">Home improvement</option><option value="DEBTCONSOLIDATION">Debt consolidation</option></select><span class="select-chevron" aria-hidden="true"></span></div>
+              </div>
+              <div class="form-field">
+                <label for="loan_grade">Loan grade</label>
+                <div class="control-wrap control-wrap--select"><select id="loan_grade" name="loan_grade" required><option value="A">A — Excellent</option><option value="B">B — Good</option><option value="C">C — Fair</option><option value="D">D — Moderate</option><option value="E">E — Below average</option><option value="F">F — High risk</option><option value="G">G — Very high risk</option></select><span class="select-chevron" aria-hidden="true"></span></div>
+              </div>
+              <div class="form-field">
+                <label for="loan_amnt">Loan amount</label>
+                <div class="control-wrap"><span class="control-prefix">₹</span><input type="number" id="loan_amnt" name="loan_amnt" min="0" step="500" value="100000" required /></div>
+              </div>
+              <div class="form-field">
+                <label for="loan_int_rate">Interest rate</label>
+                <div class="control-wrap"><input type="number" id="loan_int_rate" name="loan_int_rate" min="0" max="40" step="0.01" value="11.5" required /><span class="control-suffix">%</span></div>
+              </div>
+              <div class="form-field form-field--wide">
+                <label for="loan_percent_income">Loan-to-income ratio <span class="label-optional">Auto-calculated</span></label>
+                <div class="control-wrap"><input type="number" id="loan_percent_income" name="loan_percent_income" min="0" max="1" step="0.01" value="0.17" required /><span class="control-suffix">ratio</span></div>
+                <p class="field-hint" id="percentHint">Based on the requested amount and annual income.</p>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form-section form-section--last">
+            <legend><span class="section-number">03</span><span>Credit history</span></legend>
+            <div class="field-grid">
+              <div class="form-field">
+                <label for="cb_person_default_on_file">Previous default</label>
+                <div class="control-wrap control-wrap--select"><select id="cb_person_default_on_file" name="cb_person_default_on_file" required><option value="N">No defaults reported</option><option value="Y">Default on file</option></select><span class="select-chevron" aria-hidden="true"></span></div>
+              </div>
+              <div class="form-field">
+                <label for="cb_person_cred_hist_length">Credit history length</label>
+                <div class="control-wrap"><input type="number" id="cb_person_cred_hist_length" name="cb_person_cred_hist_length" min="0" max="60" step="1" value="6" required /><span class="control-suffix">years</span></div>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="form-actions">
+            <p class="form-disclaimer"><svg viewBox="0 0 20 20" fill="none" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><path d="M10 9v4M10 6.5h.01"/></svg> Your information is used only to generate this estimate.</p>
+            <button type="submit" id="submitBtn"><span class="btn-label">Assess application</span><span class="btn-arrow" aria-hidden="true">→</span><span class="btn-spinner" aria-hidden="true"></span></button>
+            <p class="error-note" id="errorNote" role="alert" hidden></p>
+          </div>
+        </form>
+
+        <aside class="result-column">
+          <section class="result-card result-card--empty" id="emptyState">
+            <div class="result-card__top"><span class="result-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V5M4 19h16M7.5 15l4-4 3 2 5-6"/><circle cx="19.5" cy="7" r="1"/></svg></span><span class="result-label">YOUR ASSESSMENT</span></div>
+            <div class="empty-content">
+              <div class="empty-illustration" aria-hidden="true"><span class="illustration-orbit illustration-orbit--one"></span><span class="illustration-orbit illustration-orbit--two"></span><span class="illustration-core"><svg viewBox="0 0 56 56" fill="none"><path d="M28 7 47 16.5v12.2C47 39.6 39.4 46.2 28 49 16.6 46.2 9 39.6 9 28.7V16.5L28 7Z"/><path d="m19.5 28 5.7 5.7L37 21.8"/></svg></span><span class="spark spark--one">✦</span><span class="spark spark--two">✧</span></div>
+              <h2>Your results<br />will appear here</h2>
+              <p>Fill in the application and run an assessment to see the estimated default risk.</p>
+            </div>
+            <div class="result-card__bottom"><span class="tiny-check" aria-hidden="true">✓</span> Transparent, model-based estimate</div>
+          </section>
+
+          <section class="result-card verdict" id="verdict" aria-live="polite" hidden>
+            <div class="result-card__top"><span class="result-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M4 19V5M4 19h16M7.5 15l4-4 3 2 5-6"/><circle cx="19.5" cy="7" r="1"/></svg></span><span class="result-label">ASSESSMENT RESULT</span></div>
+            <div class="verdict__gauge">
+              <svg viewBox="0 0 200 200" class="gauge" role="img" aria-label="Default probability gauge"><circle class="gauge__track" cx="100" cy="100" r="86"/><circle class="gauge__fill" id="gaugeFill" cx="100" cy="100" r="86"/><line class="gauge__threshold" id="gaugeThreshold" x1="100" y1="8" x2="100" y2="25"/></svg>
+              <div class="gauge__readout"><span><span class="gauge__number" id="probNumber">0</span><span class="gauge__percent">%</span></span><span class="gauge__caption">DEFAULT PROBABILITY</span></div>
+            </div>
+            <div class="verdict__summary"><span class="risk-indicator" id="riskIndicator"></span><div><p class="result-label">MODEL VERDICT</p><h2 class="stamp" id="stampBadge"><span id="stampText">LOW RISK</span></h2></div></div>
+            <div class="result-divider"></div>
+            <dl class="ledger-facts">
+              <div><dt>Default probability</dt><dd id="factProb">—</dd></div>
+              <div><dt>Decision threshold</dt><dd id="factThreshold">—</dd></div>
+              <div><dt>Risk category</dt><dd id="factResult">—</dd></div>
+            </dl>
+            <p class="result-disclaimer">This result is a model estimate, not a lending decision.</p>
+          </section>
+
+          <div class="trust-note"><span class="trust-note__icon" aria-hidden="true">✳</span><p><strong>Built for clarity.</strong> Use this estimate as one part of a thoughtful review—not the whole story.</p></div>
+        </aside>
+      </section>
+    </main>
+
+    <footer class="footer"><span>© Credit Ledger</span><span>Responsible decisions begin with better insight.</span></footer>
+  </div>
+  <script src="script.js?v=2"></script>
+</body>
+</html>
